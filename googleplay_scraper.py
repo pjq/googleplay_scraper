@@ -24,7 +24,8 @@ class GooglePlay:
             lang='en',  # defaults to 'en'
             country='us',  # defaults to 'us'
             sort=Sort.MOST_RELEVANT,  # defaults to Sort.MOST_RELEVANT
-            filter_score_with=5  # defaults to None(means all score)
+            count=30000,  # defaults to 100
+            filter_score_with=None  # defaults to None(means all score)
         )
 
         # print(result)
