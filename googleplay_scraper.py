@@ -6,6 +6,11 @@ import argparse
 from google_play_scraper import app
 from google_play_scraper import Sort, reviews_all, reviews
 
+lang_country = [
+    ("en", "us"),
+    ("zh", "CN"),
+    # Add more languages and countries as needed
+]
 
 class GooglePlay:
     def app_detail(self):
@@ -87,12 +92,6 @@ if __name__ == '__main__':
 
     googleplay = GooglePlay()
     googleplay.app_detail()
-
-    lang_country = [
-        ("en", "us"),
-        ("zh", "CN"),
-        # Add more languages and countries as needed
-    ]
 
     for lang, country in lang_country:
         googleplay.app_reviews(lang=lang, country=country)

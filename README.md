@@ -37,3 +37,13 @@ optional arguments:
   -y HTTPS_PROXY, --https_proxy HTTPS_PROXY
                         The https proxy
 ```
+
+#### Language/Country Support 
+You can update the lang_country in the scripts.
+```commandline
+lang_country = [
+    ("en", "us"),
+    ("zh", "CN"),
+    # Add more languages and countries as needed
+]
+```
