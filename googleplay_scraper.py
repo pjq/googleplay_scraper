@@ -28,16 +28,30 @@ class GooglePlay:
         )
 
         # print(result)
-        self.write(f"app_reviews_all_{output_file}", result)
+        self.writeArray(f"app_reviews_all_{output_file}", result)
 
     def write(self, file="default_output.txt", result=Any):
         print(f"write {output_file}")
 
-        # string = json.dump(result)
-        string = result
+        string = json.dumps(result)
         with open(file, "w") as output_f:
             output_f.write(str(string))
         #
+
+    def writeArray(self, file="default_output.txt", result=Any):
+        print(f"write {file}")
+
+        # with open(file, "w") as output_f:
+        #     output_f.write(str(result))
+        with open(file, "w") as output_file:
+            for review in result:
+                user_name = review.get("userName", "")
+                content = review.get("content", "")
+                score = review.get("score", "")
+                thumbs_up_count = review.get("thumbsUpCount", "")
+                review_text = f"userName: {user_name}, score: {score}, thumbsUpCount: {thumbs_up_count}, content: {content}"
+                output_file.write(review_text+'\n')
+                # print(review_text)
 
     def app_reviews(self):
         result, continuation_token = reviews(
@@ -50,12 +64,12 @@ class GooglePlay:
         )
 
         # print(result)
-        self.write(f"app_reviews_{output_file}", result)
+        self.writeArray(f"app_reviews_{output_file}", result)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Google Play Scraper")
-    parser.add_argument("-p", "--app_pkg", type=str, default="com.google.android.apps.googlevoice", required=True,
+    parser.add_argument("-p", "--app_pkg", type=str, default="com.google.android.apps.googlevoice", required=False,
                         help="The package name of the app to scrape")
     parser.add_argument("-x", "--http_proxy", type=str, help="The http proxy")
     parser.add_argument("-y", "--https_proxy", type=str, help="The https proxy")
@@ -72,5 +86,5 @@ if __name__ == '__main__':
 
     googleplay = GooglePlay()
     googleplay.app_detail()
-    # googleplay.app_reviews()
-    # googleplay.app_reviews_all()
+    googleplay.app_reviews()
+    googleplay.app_reviews_all()
