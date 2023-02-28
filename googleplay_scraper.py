@@ -87,7 +87,13 @@ if __name__ == '__main__':
 
     googleplay = GooglePlay()
     googleplay.app_detail()
-    googleplay.app_reviews(lang="en", country="us")
-    googleplay.app_reviews(lang="zh", country="CN")
-    googleplay.app_reviews_all(lang="en", country="us")
-    googleplay.app_reviews_all(lang="zh", country="CN")
+
+    lang_country = [
+        ("en", "us"),
+        ("zh", "CN"),
+        # Add more languages and countries as needed
+    ]
+
+    for lang, country in lang_country:
+        googleplay.app_reviews(lang=lang, country=country)
+        googleplay.app_reviews_all(lang=lang, country=country)
